@@ -474,6 +474,7 @@ def simulation_consumerPriorities(consumer_n=3, producer_n=3, time=100000):
     consumers = []
     for i in range(consumer_n):
         new_consumer = cons.Consumer("C" + str(i))
+        new_consumer.prioritize_producers(producers)  # randomly generate a prioritized list of producer indices
         consumers.append(new_consumer)
 
     fig1, ax1 = plt.subplots()
@@ -509,17 +510,15 @@ def simulation_consumerPriorities(consumer_n=3, producer_n=3, time=100000):
         # randomly determine consumer priority
         rand.shuffle(consumers)
 
-        for consumer in consumers:
-            consumer.choose_producer(producers)
-
         for producer in producers:  # producer makes a product
             producer.produce_object()
             # producers always attempt to carry as much product as customers can possibly purchase
             producer.request_inventory(len(consumers) - producer.inventory)
         # Consumer decides whether or not to purchase the item provided the consumer has it
         for consumer in consumers:
-            producers[consumer.preferred_producer].track_sales(
-                sold=consumer.purchase(producers[consumer.preferred_producer].inventory))
+            choice = consumer.choose_priority_producer()  # consumer selects a producer based upon prioritized list
+            producers[consumer.preferred_producer[choice]].track_sales(
+                sold=consumer.purchase(producers[consumer.preferred_producer[choice]].inventory))
         # The producer clears their inventory at the end of each time step
         for producer in producers:
             producer.clear_inventory()
@@ -550,4 +549,5 @@ def simulation_consumerPriorities(consumer_n=3, producer_n=3, time=100000):
 
     plt.show()
 
-simulation_prodStorage(consumer_n=5, producer_n=7)
+
+simulation_consumerPriorities(consumer_n=5, producer_n=7)
