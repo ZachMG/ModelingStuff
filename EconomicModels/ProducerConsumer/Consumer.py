@@ -1,4 +1,4 @@
-import random as rand  # Should import statements somehow be placed in __init__.py?
+import random as rand
 
 
 class Consumer:

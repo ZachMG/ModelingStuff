@@ -1,5 +1,5 @@
 import unittest
-import EconomicModels.ProducerConsumerObj.Storage as stor
+from EconomicModels.ProducerConsumer import Storage as stor
 
 CAP = 100
 

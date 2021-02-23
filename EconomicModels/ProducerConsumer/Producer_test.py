@@ -1,6 +1,6 @@
 import unittest
-import EconomicModels.ProducerConsumerObj.Producer as prod
-import EconomicModels.ProducerConsumerObj.Storage as stor
+from EconomicModels.ProducerConsumer import Producer as prod
+from EconomicModels.ProducerConsumer import Storage as stor
 
 pname = "P"
 

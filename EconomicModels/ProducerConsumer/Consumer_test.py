@@ -1,5 +1,5 @@
 import unittest
-import EconomicModels.ProducerConsumerObj.Consumer as Con
+from EconomicModels.ProducerConsumer import Consumer as Con
 
 cname = "C"
 
