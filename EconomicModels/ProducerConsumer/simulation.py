@@ -1,6 +1,7 @@
-import EconomicModels.ProducerConsumerObj.Consumer as cons
-import EconomicModels.ProducerConsumerObj.Producer as prod
-import EconomicModels.ProducerConsumerObj.Storage as stor
+from . import Consumer as cons
+from . import Producer as prod
+from . import Storage as stor
+
 import matplotlib.pyplot as plt
 import random as rand
 import numpy as np
